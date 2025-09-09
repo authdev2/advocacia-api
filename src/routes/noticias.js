@@ -15,9 +15,10 @@ export const getNoticias = (req, res) => {
 
 export const postNoticias = (req, res) => {
   const { title, description, image } = req.body;
+  const date = new Date();
   con.query(
-    "INSERT INTO noticias (nomeNoticia, descricaoNoticia, imagemNoticia) VALUES (?, ?, ?)",
-    [title, description, image],
+    "INSERT INTO noticias (nomeNoticia, descricaoNoticia, imagemNoticia, data) VALUES (?, ?, ?, ?)",
+    [title, description, image, date],
     function (err, result) {
       if (err) {
         return res.status(500).send({ error: "Erro ao criar notícia" });

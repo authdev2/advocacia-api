@@ -6,7 +6,8 @@ import {postLogin, loginExists, deleteUser, loginUsers, updateUser } from './rou
 let app = express();
 app.use(cors());
 app.use(express.json());
-let port = 3000;
+
+const PORT = process.env.PORT || 3000;
 
 //NOTICIAS
 app.get('/noticias', getNoticias);
@@ -23,6 +24,6 @@ app.post("/login", loginExists);
 
 app.delete("/login/delete", deleteUser);
 app.put("/login/update", updateUser);
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

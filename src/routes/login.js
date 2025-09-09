@@ -78,12 +78,12 @@ export const deleteUser = (req, res) => {
 };
 
 export const updateUser = (req, res) => {
-    const { email, password } = req.body;
-    
-    con.query("UPDATE users SET password = ? WHERE email = ?", [password, email], function (err, result) {
+    const { email } = req.body;
+    const newEmail = req.body.newEmail;
+    con.query("UPDATE users SET email = ? WHERE email = ?", [newEmail, email], function (err, result) {
         if (err) {
             return res.status(500).send({ error: "Erro ao atualizar usuário" });
         }
-        res.send({ message: "Usuário atualizado com sucesso" });
+        res.send({ message: "Usuário atualizado com sucesso", success: true });
     });
 };

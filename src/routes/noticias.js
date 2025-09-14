@@ -44,25 +44,21 @@ export const deleteNoticias = (req, res) => {
 
 export const updateNoticias = (req, res) => {
   const {
-    nomeNoticia,
-    descricaoNoticia,
-    imagemNoticia,
     newNomeNoticia,
     newDescricaoNoticia,
     newImagemNoticia, 
+    id,
   } = req.body;
 
   console.log("Dados recebidos:", req.body);
 
   con.query(
-    "UPDATE noticias SET nomeNoticia = ?, descricaoNoticia = ?, imagemNoticia = ? WHERE nomeNoticia = ? AND descricaoNoticia = ? AND imagemNoticia = ?",
+    "UPDATE noticias SET nomeNoticia = ?, descricaoNoticia = ?, imagemNoticia = ? WHERE id = ?",
     [
       newNomeNoticia,
       newDescricaoNoticia,
       newImagemNoticia,
-      nomeNoticia,
-      descricaoNoticia,
-      imagemNoticia,
+      id,
     ],
     function (err, result) {
       if (err) {
